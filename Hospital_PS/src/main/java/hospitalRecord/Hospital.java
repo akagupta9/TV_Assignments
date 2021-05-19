@@ -3,16 +3,18 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import utilities.CustomTypes.HospitalLocation;
+
 public class Hospital {
 	private List<Patient> patients;
-	private String location = "Bangalore";
+	private HospitalLocation location = HospitalLocation.BANGALORE;
 
-	public Hospital(String location) {
+	public Hospital(HospitalLocation location) {
 		this.location = location;
 		patients = new ArrayList<>();
 	}
 
-	public String getLocation() {
+	public HospitalLocation getLocation() {
 		return location;
 	}
 

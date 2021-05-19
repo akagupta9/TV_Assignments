@@ -3,10 +3,12 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+import utilities.CustomTypes.HospitalLocation;
+
 public class RecordManager {
 
 	public static void main(String[] arg) {
-		Hospital hospital = new Hospital("Bangalore");
+		Hospital hospital = new Hospital(HospitalLocation.BANGALORE);
 		while (true) {
 			System.out.println("_____WELCOME TO HOSPITAL___");
 			System.out.println("1. Add Patient");

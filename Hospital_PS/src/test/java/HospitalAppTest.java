@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import hospitalRecord.Hospital;
 import hospitalRecord.Patient;
 import hospitalRecord.Visits;
+import utilities.CustomTypes.HospitalLocation;
 
 public class HospitalAppTest {
 
@@ -15,7 +16,7 @@ public class HospitalAppTest {
 
 	@BeforeTest
 	public void beforeClass() {
-		hospital = new Hospital("Bangalore");
+		hospital = new Hospital(HospitalLocation.BANGALORE);
 
 		Patient patient = new Patient("Patient 1","Delhi");
 
@@ -47,7 +48,7 @@ public class HospitalAppTest {
 	@Test
 	public void getPatients() {
 		List<Patient> allPatients = hospital.getPatients();
-		Assert.assertTrue(allPatients.size() >= 0);
+		Assert.assertTrue(allPatients.size() == 4);
 	}
 
 	@Test

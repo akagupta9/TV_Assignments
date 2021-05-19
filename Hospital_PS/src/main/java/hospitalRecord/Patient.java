@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import utilities.CustomTypes.HospitalLocation;
+
 public class Patient {
 
 	private String name;
@@ -36,8 +38,8 @@ public class Patient {
 		return allVisits;
 	}
 
-	public boolean isPatientLocal(String hospitalLocation) {
-		return getVisitLocation().trim().equalsIgnoreCase(hospitalLocation);
+	public boolean isPatientLocal(HospitalLocation hospitalLocation) {
+		return getVisitLocation().trim().equalsIgnoreCase(hospitalLocation.toString());
 	}
 	
 	public List<LocalDate> getAllVisitedDates() {
