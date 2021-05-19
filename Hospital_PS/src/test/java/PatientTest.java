@@ -4,32 +4,31 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import hospitalRecord.Patient;
+import hospitalRecord.Visits;
+
 public class PatientTest {
 
 	Patient patient;
 
 	@BeforeClass
 	public void setUp() {
-		patient = new Patient();
+		patient = new Patient("Patient 1","Delhi");
 	}
 
 	@Test
 	public void validatePatientVisitAfterDate() {
 
-		patient.setName("Patient 1");
-		patient.setVisitLocation("Delhi");
-		Visits visit1 = new Visits();
-		visit1.setDate(LocalDate.parse("2021-01-01"));
+		Visits visit1 = new Visits(LocalDate.of(2021, 01, 01));
 		patient.addVisit(visit1);
 
-		Visits visit2 = new Visits();
-		visit2.setDate(LocalDate.parse("2022-01-01"));
+		Visits visit2 = new Visits(LocalDate.of(2022, 01, 01));
 		patient.addVisit(visit2);
 
-		boolean isPatientVisitedAfterDate = patient.isPatientVistedAfter("2021-12-01");
+		boolean isPatientVisitedAfterDate = patient.isPatientVistedAfter(LocalDate.of(2021,12,01));
 		Assert.assertTrue(isPatientVisitedAfterDate);
 
-		isPatientVisitedAfterDate = patient.isPatientVistedAfter("2023-12-01");
+		isPatientVisitedAfterDate = patient.isPatientVistedAfter(LocalDate.of(2023, 12, 01));
 		Assert.assertFalse(isPatientVisitedAfterDate);
 
 	}
@@ -37,20 +36,16 @@ public class PatientTest {
 	@Test
 	public void validatePatientVisitBeforeDate() {
 
-		patient.setName("Patient 2");
-		patient.setVisitLocation("Bangalore");
-		Visits visit1 = new Visits();
-		visit1.setDate(LocalDate.parse("2021-01-01"));
+		Visits visit1 = new Visits(LocalDate.of(2021, 01, 01));
 		patient.addVisit(visit1);
 
-		Visits visit2 = new Visits();
-		visit2.setDate(LocalDate.parse("2019-01-01"));
+		Visits visit2 = new Visits(LocalDate.of(2019, 01, 01));
 		patient.addVisit(visit2);
 
-		boolean isPatientVistedBefore = patient.isPatientVistedBefore("2021-01-01");
+		boolean isPatientVistedBefore = patient.isPatientVistedBefore(LocalDate.of(2021,01,01));
 		Assert.assertTrue(isPatientVistedBefore);
 
-		isPatientVistedBefore = patient.isPatientVistedBefore("2010-12-01");
+		isPatientVistedBefore = patient.isPatientVistedBefore(LocalDate.of(2010,12,01));
 		Assert.assertFalse(isPatientVistedBefore);
 
 	}

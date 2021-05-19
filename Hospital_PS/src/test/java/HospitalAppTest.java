@@ -5,52 +5,41 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import hospitalRecord.Hospital;
+import hospitalRecord.Patient;
+import hospitalRecord.Visits;
+
 public class HospitalAppTest {
 
 	Hospital hospital;
 
 	@BeforeTest
 	public void beforeClass() {
-		hospital = new Hospital();
-		hospital.setLocation("Bangalore");
+		hospital = new Hospital("Bangalore");
 
-		Patient patient = new Patient();
+		Patient patient = new Patient("Patient 1","Delhi");
 
-		patient.setName("Patient 1");
-		patient.setVisitLocation("Delhi");
-		Visits visit1 = new Visits();
-		visit1.setDate(LocalDate.parse("2021-01-01"));
+		Visits visit1 = new Visits(LocalDate.of(2021, 01, 01));
 		patient.addVisit(visit1);
-		Visits visit2 = new Visits();
-		visit2.setDate(LocalDate.parse("2022-01-01"));
+		Visits visit2 = new Visits(LocalDate.of(2022, 01, 01));
 		patient.addVisit(visit2);
 		hospital.addPatient(patient);
 
-		patient = new Patient();
-		patient.setName("Patient 2");
-		patient.setVisitLocation("Bangalore");
-		visit1 = new Visits();
-		visit1.setDate(LocalDate.parse("2021-01-01"));
+		patient = new Patient("Patient 2","Bangalore");
+		visit1 = new Visits(LocalDate.of(2021, 01, 01));
 		patient.addVisit(visit1);
 
-		visit2 = new Visits();
-		visit2.setDate(LocalDate.parse("2022-01-01"));
+		visit2 = new Visits(LocalDate.of(2022, 01, 01));
 		patient.addVisit(visit2);
 		hospital.addPatient(patient);
 
-		patient = new Patient();
-		patient.setName("Patient 3");
-		patient.setVisitLocation("Bangalore");
-		visit1 = new Visits();
-		visit1.setDate(LocalDate.parse("2021-01-01"));
+		patient = new Patient("Patient 3","Bangalore");
+		visit1 = new Visits(LocalDate.of(2021, 01, 01));
 		patient.addVisit(visit1);
 		hospital.addPatient(patient);
 
-		patient = new Patient();
-		patient.setName("Patient 4");
-		patient.setVisitLocation("Delhi");
-		visit1 = new Visits();
-		visit1.setDate(LocalDate.parse("2021-01-01"));
+		patient = new Patient("Patient 4","Delhi");
+		visit1 = new Visits(LocalDate.of(2021, 01, 01));
 		patient.addVisit(visit1);
 		hospital.addPatient(patient);
 	}
@@ -65,11 +54,8 @@ public class HospitalAppTest {
 	public void addPatient() {
 		int initialPatientsCount = hospital.getPatients().size();
 
-		Patient patient = new Patient();
-		patient.setName("Patient 1");
-		patient.setVisitLocation("Delhi");
-		Visits visit1 = new Visits();
-		visit1.setDate(LocalDate.parse("1990-01-01"));
+		Patient patient = new Patient("Patient 1","Delhi");
+		Visits visit1 = new Visits(LocalDate.of(1990, 01, 01));
 		patient.addVisit(visit1);
 
 		hospital.addPatient(patient);
@@ -79,12 +65,11 @@ public class HospitalAppTest {
 
 	@Test
 	public void validatePatientLocality() {
-		Patient patient = new Patient();
-		patient.setVisitLocation("Delhi");
+		Patient patient = new Patient("Patient 1","Delhi");
 		boolean isPatientLocal = patient.isPatientLocal(hospital.getLocation());
 		Assert.assertFalse(isPatientLocal);
-
-		patient.setVisitLocation("Bangalore");
+		
+		patient = new Patient("Patient 1","Bangalore");
 		isPatientLocal = patient.isPatientLocal(hospital.getLocation());
 		Assert.assertTrue(isPatientLocal);
 	}
@@ -92,7 +77,7 @@ public class HospitalAppTest {
 	@Test
 	public void validatePatientFilterWithDateRange() {
 
-		long localPatientCount = hospital.getLocalPatientCountWithinDateRange("2020-12-01", "2021-02-01");
+		long localPatientCount = hospital.getLocalPatientCountWithinDateRange(LocalDate.of(2020, 12, 01), LocalDate.of(2021, 02, 01));
 		Assert.assertTrue((int) localPatientCount == 2);
 
 	}
@@ -100,7 +85,7 @@ public class HospitalAppTest {
 	@Test
 	public void validateAllPatientsWithDateRange() {
 
-		long localPatientCount = hospital.getAllPatientCountWithinDateRange("2020-12-01", "2022-02-01");
+		long localPatientCount = hospital.getAllPatientCountWithinDateRange(LocalDate.of(2020, 12, 01), LocalDate.of(2022, 02, 01));
 		Assert.assertTrue((int) localPatientCount == 4);
 
 	}
@@ -108,7 +93,7 @@ public class HospitalAppTest {
 	@Test
 	public void validateLocalPatiencePercentCountWithDataRange() {
 
-		double patientPercentage = hospital.getLocalPatientsPercentage("2020-12-01", "2022-02-01");
+		double patientPercentage = hospital.getLocalPatientsPercentage(LocalDate.of(2020, 12, 01), LocalDate.of(2022, 02, 01));
 		Assert.assertTrue(patientPercentage == 50.0);
 
 	}

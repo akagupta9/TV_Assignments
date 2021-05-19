@@ -1,3 +1,4 @@
+package hospitalRecord;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -5,7 +6,7 @@ import java.util.Scanner;
 public class RecordManager {
 
 	public static void main(String[] arg) {
-		Hospital hospital = new Hospital();
+		Hospital hospital = new Hospital("Bangalore");
 		while (true) {
 			System.out.println("_____WELCOME TO HOSPITAL___");
 			System.out.println("1. Add Patient");
@@ -24,22 +25,18 @@ public class RecordManager {
 				String name = sc.next();
 				System.out.println("Visit Location : ");
 				String location = sc.next();
+				
 				System.out.println("Visit Date 1 (In Format YYYY-MM-DD): ");
 				String date1 = sc.next();
 				
-				Visits visit1 = new Visits();
-				visit1.setDate(LocalDate.parse(date1));
-				Patient patient = new Patient();
-				patient.setName(name);
-				patient.setVisitLocation(location);
-				patient.addVisit(visit1);
-				
+				Visits visit1 = new Visits(LocalDate.parse(date1));
 				System.out.println("Visit Date 2 (In Format YYYY-MM-DD): ");
 				String date2 = sc.next();
+				Visits visit2 = new Visits(LocalDate.parse(date2));
 				
-				Visits visit2 = new Visits();
-				visit2.setDate(LocalDate.parse(date2));
+				Patient patient= new Patient(name, location);
 				patient.addVisit(visit2);
+				patient.addVisit(visit1);
 				
 				hospital.addPatient(patient);
 				break;
@@ -57,7 +54,7 @@ public class RecordManager {
 				String fromDate = sc.next();
 				System.out.println("Enter To Date : ");
 				String toDate = sc.next();
-				double filteredResult = hospital.getLocalPatientsPercentage(fromDate, toDate);
+				double filteredResult = hospital.getLocalPatientsPercentage(LocalDate.parse(fromDate), LocalDate.parse(toDate));
 				System.out.println(String.format("Local Patient Percent is %s %", filteredResult));
 				break;
 

@@ -1,3 +1,4 @@
+package hospitalRecord;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +10,10 @@ public class Patient {
 	private String visitLocation;
 	private List<Visits> allVisits;
 	
-	public Patient() {
-		// TODO Auto-generated constructor stub
+	public Patient(String name, String visitLocation) {
 		allVisits = new ArrayList<>();
+		this.name = name;
+		this.visitLocation = visitLocation;
 	}
 
 	public String getName() {
@@ -22,20 +24,8 @@ public class Patient {
 		return allVisits;
 	}
 
-	public void setAllVisits(List<Visits> allVisits) {
-		this.allVisits = allVisits;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getVisitLocation() {
 		return visitLocation;
-	}
-
-	public void setVisitLocation(String visitLocation) {
-		this.visitLocation = visitLocation;
 	}
 
 	public void addVisit(Visits visit) {
@@ -55,15 +45,15 @@ public class Patient {
 				.collect(Collectors.toList());
 	}
 
-	public boolean isPatientVistedAfter(String fromdate) {
+	public boolean isPatientVistedAfter(LocalDate fromdate) {
 		List<LocalDate> visitedDateAfter = getAllVisitedDates().stream()
-				.filter(date -> date.isAfter(LocalDate.parse(fromdate))).collect(Collectors.toList());
+				.filter(date -> date.isAfter(fromdate)).collect(Collectors.toList());
 		return (visitedDateAfter.size() > 0) ? true : false;
 	}
 
-	public boolean isPatientVistedBefore(String toDate) {
+	public boolean isPatientVistedBefore(LocalDate toDate) {
 		List<LocalDate> visitedDateBefore = getAllVisitedDates().stream()
-				.filter(date -> date.isBefore(LocalDate.parse(toDate))).collect(Collectors.toList());
+				.filter(date -> date.isBefore(toDate)).collect(Collectors.toList());
 		return (visitedDateBefore.size() > 0) ? true : false;
 		
 	}
