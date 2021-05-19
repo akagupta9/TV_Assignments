@@ -1,0 +1,14 @@
+#IDEA Directory
+.idea/*
+.idea
+
+#HOSPITAL Assignment
+Hospital_PS/target/
+Hospital_PS/target
+Hospital_PS/Hospital.iml
+Hospital_PS/.classpath
+Hospital_PS/.project
+Hospital_PS/.settings
+Hospital_PS/test-output
+Hospital_PS/.idea
+Hospital_PS/.idea/*

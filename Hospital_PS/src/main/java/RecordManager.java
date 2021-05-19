@@ -25,14 +25,19 @@ public class RecordManager {
                     String location = sc.next();
                     System.out.println("Date (In Format YYYY-MM-DD): ");
                     String date = sc.next();
-                    hospital.addPatient(name, location, date);
+                    
+                    Patient patient = new Patient();
+                    patient.setName(name);
+                    patient.setVisitDate(date);
+                    patient.setVisitLocation(location);
+                    hospital.addPatient(patient);
                     break;
 
                 case 2:
                     System.out.println("Patients Details: ");
                     List<Patient> patients = hospital.getPatients();
-                    for (Patient patient: patients){
-                        System.out.println(patient.toString());
+                    for (Patient patient1: patients){
+                        System.out.println(patient1.toString());
                     }
                     break;
 
@@ -41,8 +46,8 @@ public class RecordManager {
                     String fromDate = sc.next();
                     System.out.println("Enter To Date : ");
                     String toDate = sc.next();
-                    String filteredResult = hospital.getPatientsDetailsWithinDateRange(fromDate,toDate);
-                    System.out.println(filteredResult);
+                    double filteredResult = hospital.getLocalPatientsPercentage(fromDate,toDate);
+                    System.out.println(String.format("Local Patient Percent is %s %", filteredResult));
                     break;
 
                 case 4:

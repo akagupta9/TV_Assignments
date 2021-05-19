@@ -30,8 +30,8 @@ public class Patient {
         this.visitDate = visitDate;
     }
 
-    public boolean isPatientLocal() {
-        return getVisitLocation().trim().equalsIgnoreCase("Bangalore");
+    public boolean isPatientLocal(String hospitalLocation) {
+        return getVisitLocation().trim().equalsIgnoreCase(hospitalLocation);
     }
 
     public boolean isPatientVistedAfter(String fromdate) {
