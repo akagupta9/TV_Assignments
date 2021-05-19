@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.List;
 
 import org.testng.Assert;
@@ -16,30 +17,41 @@ public class HospitalAppTest {
 		Patient patient = new Patient();
 
 		patient.setName("Patient 1");
-		patient.setVisitDate("2021-01-01");
-		patient.setVisitLocation("Bangalore");
-
+		patient.setVisitLocation("Delhi");
+		Visits visit1 = new Visits();
+		visit1.setDate(LocalDate.parse("2021-01-01"));
+		patient.addVisit(visit1);
+		Visits visit2 = new Visits();
+		visit2.setDate(LocalDate.parse("2022-01-01"));
+		patient.addVisit(visit2);
 		hospital.addPatient(patient);
 
 		patient = new Patient();
 		patient.setName("Patient 2");
-		patient.setVisitDate("2021-02-01");
-		patient.setVisitLocation("Delhi");
+		patient.setVisitLocation("Bangalore");
+		visit1 = new Visits();
+		visit1.setDate(LocalDate.parse("2021-01-01"));
+		patient.addVisit(visit1);
 
+		visit2 = new Visits();
+		visit2.setDate(LocalDate.parse("2022-01-01"));
+		patient.addVisit(visit2);
 		hospital.addPatient(patient);
 
 		patient = new Patient();
 		patient.setName("Patient 3");
-		patient.setVisitDate("2021-03-01");
 		patient.setVisitLocation("Bangalore");
-
+		visit1 = new Visits();
+		visit1.setDate(LocalDate.parse("2021-01-01"));
+		patient.addVisit(visit1);
 		hospital.addPatient(patient);
 
 		patient = new Patient();
 		patient.setName("Patient 4");
-		patient.setVisitDate("2021-03-01");
 		patient.setVisitLocation("Delhi");
-
+		visit1 = new Visits();
+		visit1.setDate(LocalDate.parse("2021-01-01"));
+		patient.addVisit(visit1);
 		hospital.addPatient(patient);
 	}
 
@@ -55,8 +67,10 @@ public class HospitalAppTest {
 
 		Patient patient = new Patient();
 		patient.setName("Patient 1");
-		patient.setVisitDate("1999-01-10");
-		patient.setVisitLocation("Bangalore");
+		patient.setVisitLocation("Delhi");
+		Visits visit1 = new Visits();
+		visit1.setDate(LocalDate.parse("1990-01-01"));
+		patient.addVisit(visit1);
 
 		hospital.addPatient(patient);
 
@@ -79,7 +93,7 @@ public class HospitalAppTest {
 	public void validatePatientFilterWithDateRange() {
 
 		long localPatientCount = hospital.getLocalPatientCountWithinDateRange("2020-12-01", "2021-02-01");
-		Assert.assertTrue((int) localPatientCount == 1);
+		Assert.assertTrue((int) localPatientCount == 2);
 
 	}
 
