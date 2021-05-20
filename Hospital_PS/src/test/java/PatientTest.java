@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import hospitalRecord.Patient;
 import hospitalRecord.Visits;
+import utilities.CustomTypes.HospitalLocation;
 
 public class PatientTest {
 
@@ -13,7 +14,7 @@ public class PatientTest {
 
 	@BeforeClass
 	public void setUp() {
-		patient = new Patient("Patient 1","Delhi");
+		patient = new Patient("Patient 1",HospitalLocation.DELHI);
 	}
 
 	@Test

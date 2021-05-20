@@ -36,7 +36,7 @@ public class RecordManager {
 				String date2 = sc.next();
 				Visits visit2 = new Visits(LocalDate.parse(date2));
 				
-				Patient patient= new Patient(name, location);
+				Patient patient= new Patient(name, HospitalLocation.BANGALORE);
 				patient.addVisit(visit2);
 				patient.addVisit(visit1);
 				

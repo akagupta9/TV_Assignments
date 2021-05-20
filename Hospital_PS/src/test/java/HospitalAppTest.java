@@ -18,7 +18,7 @@ public class HospitalAppTest {
 	public void beforeClass() {
 		hospital = new Hospital(HospitalLocation.BANGALORE);
 
-		Patient patient = new Patient("Patient 1","Delhi");
+		Patient patient = new Patient("Patient 1",HospitalLocation.DELHI);
 
 		Visits visit1 = new Visits(LocalDate.of(2021, 01, 01));
 		patient.addVisit(visit1);
@@ -26,7 +26,7 @@ public class HospitalAppTest {
 		patient.addVisit(visit2);
 		hospital.addPatient(patient);
 
-		patient = new Patient("Patient 2","Bangalore");
+		patient = new Patient("Patient 2",HospitalLocation.BANGALORE);
 		visit1 = new Visits(LocalDate.of(2021, 01, 01));
 		patient.addVisit(visit1);
 
@@ -34,12 +34,12 @@ public class HospitalAppTest {
 		patient.addVisit(visit2);
 		hospital.addPatient(patient);
 
-		patient = new Patient("Patient 3","Bangalore");
+		patient = new Patient("Patient 3",HospitalLocation.BANGALORE);
 		visit1 = new Visits(LocalDate.of(2021, 01, 01));
 		patient.addVisit(visit1);
 		hospital.addPatient(patient);
 
-		patient = new Patient("Patient 4","Delhi");
+		patient = new Patient("Patient 4",HospitalLocation.DELHI);
 		visit1 = new Visits(LocalDate.of(2021, 01, 01));
 		patient.addVisit(visit1);
 		hospital.addPatient(patient);
@@ -55,7 +55,7 @@ public class HospitalAppTest {
 	public void addPatient() {
 		int initialPatientsCount = hospital.getPatients().size();
 
-		Patient patient = new Patient("Patient 1","Delhi");
+		Patient patient = new Patient("Patient 1",HospitalLocation.DELHI);
 		Visits visit1 = new Visits(LocalDate.of(1990, 01, 01));
 		patient.addVisit(visit1);
 
@@ -66,11 +66,11 @@ public class HospitalAppTest {
 
 	@Test
 	public void validatePatientLocality() {
-		Patient patient = new Patient("Patient 1","Delhi");
+		Patient patient = new Patient("Patient 1",HospitalLocation.DELHI);
 		boolean isPatientLocal = patient.isPatientLocal(hospital.getLocation());
 		Assert.assertFalse(isPatientLocal);
 		
-		patient = new Patient("Patient 1","Bangalore");
+		patient = new Patient("Patient 1",HospitalLocation.BANGALORE);
 		isPatientLocal = patient.isPatientLocal(hospital.getLocation());
 		Assert.assertTrue(isPatientLocal);
 	}

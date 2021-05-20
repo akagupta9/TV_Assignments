@@ -9,10 +9,10 @@ import utilities.CustomTypes.HospitalLocation;
 public class Patient {
 
 	private String name;
-	private String visitLocation;
+	private HospitalLocation visitLocation;
 	private List<Visits> allVisits;
 	
-	public Patient(String name, String visitLocation) {
+	public Patient(String name, HospitalLocation visitLocation) {
 		allVisits = new ArrayList<>();
 		this.name = name;
 		this.visitLocation = visitLocation;
@@ -26,7 +26,7 @@ public class Patient {
 		return allVisits;
 	}
 
-	public String getVisitLocation() {
+	public HospitalLocation getVisitLocation() {
 		return visitLocation;
 	}
 
@@ -39,7 +39,7 @@ public class Patient {
 	}
 
 	public boolean isPatientLocal(HospitalLocation hospitalLocation) {
-		return getVisitLocation().trim().equalsIgnoreCase(hospitalLocation.toString());
+		return getVisitLocation().toString().trim().equalsIgnoreCase(hospitalLocation.toString());
 	}
 	
 	public List<LocalDate> getAllVisitedDates() {

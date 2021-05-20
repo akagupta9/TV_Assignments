@@ -12,3 +12,14 @@ Hospital_PS/.settings
 Hospital_PS/test-output
 Hospital_PS/.idea
 Hospital_PS/.idea/*
+
+##COvinRestAPI
+COvinRestAPI/target/
+COvinRestAPI/target
+COvinRestAPI/COvinRestAPI.iml
+COvinRestAPI/classpath
+COvinRestAPI/.project
+COvinRestAPI/.settings
+COvinRestAPI/test-output
+COvinRestAPI/.idea
+COvinRestAPI/.idea/*
