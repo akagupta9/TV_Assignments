@@ -13,13 +13,13 @@ Hospital_PS/test-output
 Hospital_PS/.idea
 Hospital_PS/.idea/*
 
-##COvinRestAPI
-COvinRestAPI/target/
-COvinRestAPI/target
-COvinRestAPI/COvinRestAPI.iml
-COvinRestAPI/classpath
-COvinRestAPI/.project
-COvinRestAPI/.settings
-COvinRestAPI/test-output
-COvinRestAPI/.idea
-COvinRestAPI/.idea/*
+##Shopping_PS
+Shopping_PS/target/
+Shopping_PS/target
+Shopping_PS/Shopping_PS.iml
+Shopping_PS/classpath
+Shopping_PS/.project
+Shopping_PS/.settings
+Shopping_PS/test-output
+Shopping_PS/.idea
+Shopping_PS/.idea/*
