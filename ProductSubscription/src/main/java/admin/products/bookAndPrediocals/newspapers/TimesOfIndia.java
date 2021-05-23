@@ -1,33 +1,32 @@
 package admin.products.bookAndPrediocals.newspapers;
 
-import java.util.Arrays;
 import java.util.DoubleSummaryStatistics;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import admin.services.MonthName;
 import admin.services.WeekDay;
 
-public class Hindu implements INewspaper {
+public class TimesOfIndia implements INewspaper {
 
-	private Map<WeekDay, Double> dailyPriceRecord;
-	private Map<MonthName, Double> monthPriceRecord;
+	private HashMap<WeekDay, Double> dailyPriceRecord;
+	private HashMap<MonthName, Double> monthPriceRecord;
 
-	public Hindu() {
+	public TimesOfIndia() {
 		dailyPriceRecord = new HashMap<WeekDay, Double>();
+		monthPriceRecord = new HashMap<MonthName, Double>();
 		setDailyDefaultPrice();
 		setMonthlyDefaultPrice();
 	}
 
 	public void setDailyDefaultPrice() {
-		dailyPriceRecord.put(WeekDay.SUNDAY, 4.0);
-		dailyPriceRecord.put(WeekDay.MONDAY, 2.5);
-		dailyPriceRecord.put(WeekDay.TUESDAY, 2.5);
-		dailyPriceRecord.put(WeekDay.WEDNESDAY, 2.5);
-		dailyPriceRecord.put(WeekDay.THURSDAY, 2.5);
-		dailyPriceRecord.put(WeekDay.FRIDAY, 2.5);
-		dailyPriceRecord.put(WeekDay.SATURDAY, 4.0);
+		dailyPriceRecord.put(WeekDay.SUNDAY, 6.0);
+		dailyPriceRecord.put(WeekDay.MONDAY, 3.5);
+		dailyPriceRecord.put(WeekDay.TUESDAY, 3.5);
+		dailyPriceRecord.put(WeekDay.WEDNESDAY, 3.5);
+		dailyPriceRecord.put(WeekDay.THURSDAY, 3.5);
+		dailyPriceRecord.put(WeekDay.FRIDAY, 3.5);
+		dailyPriceRecord.put(WeekDay.SATURDAY, 5.0);
 	}
 
 	public void setMonthlyDefaultPrice() {
@@ -45,30 +44,40 @@ public class Hindu implements INewspaper {
 		monthPriceRecord.put(MonthName.DECEMEBER, 40.0);
 	}
 
-	public Map<WeekDay, Double> getDefaultDailyPrice() {
+	@Override
+	public HashMap<WeekDay, Double> getDefaultDailyPrice() {
 		return dailyPriceRecord;
 	}
 
+	@Override
 	public void updateDailyPrice(WeekDay day, double price) {
-		dailyPriceRecord.put(day, price);
-	}
-	
-	public void updateMonthlyPrice(MonthName month, double price) {
-		monthPriceRecord.put(month, price);
+		dailyPriceRecord.replace(day, price);
 	}
 
+	@Override
 	public double getDailyPrice(WeekDay day) {
 		return dailyPriceRecord.get(day);
 	}
+	
+	@Override
+	public void updateMonthlyPrice(MonthName month, double price) {
+		monthPriceRecord.replace(month, price);
+	}
 
+	@Override
+	public HashMap<MonthName, Double> getDefaultMonthlyPrice() {
+		return monthPriceRecord;
+	}
+
+	@Override
 	public double getWeeklyPrice() {
 		DoubleSummaryStatistics summary = dailyPriceRecord.values().stream()
 				.collect(Collectors.summarizingDouble(i -> i));
 		return summary.getSum();
 	}
 
+	@Override
 	public double getMonthlyPrice(MonthName month) {
 		return monthPriceRecord.get(month);
 	}
-
 }

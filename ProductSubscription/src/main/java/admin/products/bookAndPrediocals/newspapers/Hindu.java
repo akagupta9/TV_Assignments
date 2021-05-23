@@ -2,27 +2,31 @@ package admin.products.bookAndPrediocals.newspapers;
 
 import java.util.DoubleSummaryStatistics;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import admin.services.MonthName;
 import admin.services.WeekDay;
 
-public class TimesOfIndia implements INewspaper {
+public class Hindu implements INewspaper {
 
-	private HashMap<WeekDay, Double> dailyPriceRecord;
-	private Map<MonthName, Double> monthPriceRecord;
+	private static HashMap<WeekDay, Double> dailyPriceRecord;
+	private static HashMap<MonthName, Double> monthPriceRecord;
+
+	public Hindu() {
+		dailyPriceRecord = new HashMap<WeekDay, Double>();
+		monthPriceRecord = new HashMap<MonthName, Double>();
+	}
 
 	public void setDailyDefaultPrice() {
-		dailyPriceRecord.put(WeekDay.SUNDAY, 6.0);
-		dailyPriceRecord.put(WeekDay.MONDAY, 3.5);
-		dailyPriceRecord.put(WeekDay.TUESDAY, 3.5);
-		dailyPriceRecord.put(WeekDay.WEDNESDAY, 3.5);
-		dailyPriceRecord.put(WeekDay.THURSDAY, 3.5);
-		dailyPriceRecord.put(WeekDay.FRIDAY, 3.5);
-		dailyPriceRecord.put(WeekDay.SATURDAY, 5.0);
+		dailyPriceRecord.put(WeekDay.SUNDAY, 4.0);
+		dailyPriceRecord.put(WeekDay.MONDAY, 2.5);
+		dailyPriceRecord.put(WeekDay.TUESDAY, 2.5);
+		dailyPriceRecord.put(WeekDay.WEDNESDAY, 2.5);
+		dailyPriceRecord.put(WeekDay.THURSDAY, 2.5);
+		dailyPriceRecord.put(WeekDay.FRIDAY, 2.5);
+		dailyPriceRecord.put(WeekDay.SATURDAY, 4.0);
 	}
-	
+
 	public void setMonthlyDefaultPrice() {
 		monthPriceRecord.put(MonthName.JANUARY, 40.0);
 		monthPriceRecord.put(MonthName.FEBRUARY, 40.0);
@@ -38,31 +42,34 @@ public class TimesOfIndia implements INewspaper {
 		monthPriceRecord.put(MonthName.DECEMEBER, 40.0);
 	}
 
-	public Map<WeekDay, Double> getDefaultDailyPrice() {
+	public HashMap<WeekDay, Double> getDefaultDailyPrice() {
 		return dailyPriceRecord;
+	}
+
+	public HashMap<MonthName, Double> getDefaultMonthlyPrice() {
+		return monthPriceRecord;
 	}
 
 	public void updateDailyPrice(WeekDay day, double price) {
 		dailyPriceRecord.put(day, price);
 	}
 
-	public double getDailyPrice(WeekDay day) {
-		return dailyPriceRecord.get(day);
-	}
-	
 	public void updateMonthlyPrice(MonthName month, double price) {
 		monthPriceRecord.put(month, price);
 	}
 
-	@Override
+	public double getDailyPrice(WeekDay day) {
+		return dailyPriceRecord.get(day);
+	}
+
 	public double getWeeklyPrice() {
 		DoubleSummaryStatistics summary = dailyPriceRecord.values().stream()
 				.collect(Collectors.summarizingDouble(i -> i));
 		return summary.getSum();
 	}
 
-	@Override
 	public double getMonthlyPrice(MonthName month) {
 		return monthPriceRecord.get(month);
 	}
+
 }

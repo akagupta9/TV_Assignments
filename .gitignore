@@ -23,3 +23,13 @@ Shopping_PS/.settings
 Shopping_PS/test-output
 Shopping_PS/.idea
 Shopping_PS/.idea/*
+
+##ProductSubscription
+ProductSubscription/target/
+ProductSubscription/target/
+ProductSubscription/classpath
+ProductSubscription/.project
+ProductSubscription/.settings
+ProductSubscription/.idea
+ProductSubscription/.idea/*
+ProductSubscription/ProductSubscription.iml
